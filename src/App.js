@@ -8,6 +8,13 @@ import { useState } from "react";
 import AddTodo from "./My Component/AddTodo";
 
 function App() {
+  let initTodo;
+  if (localStorage.getItem("todos") === null) {
+    initTodo = [];
+  } else {
+    initTodo = JSON.parse(localStorage.getItem("todos"));
+  }
+
   const onDelete = (todo) => {
     console.log("I am on delete", todo);
     setTodos(
@@ -15,6 +22,8 @@ function App() {
         return e !== todo;
       })
     );
+    localStorage.getItem("todos");
+    localStorage.setItem("todos", JSON.stringify(todos));
   };
 
   const addTodo = (title, desc) => {
@@ -25,12 +34,12 @@ function App() {
       title: title,
       desc: desc,
     };
-
     setTodos([...todos, myTodo]);
     console.log(myTodo);
+    localStorage.setItem("todos", JSON.stringify(todos));
   };
 
-  let [todos, setTodos] = useState([]);
+  let [todos, setTodos] = useState([initTodo]);
 
   return (
     <>

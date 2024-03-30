@@ -4,7 +4,7 @@ export default function Footer() {
   let footerStyle = {
     // marginTop: "320px",
     position: "relative",
-    top: "30vh",
+    top: "100vh",
     width: "100%",
   };
 
